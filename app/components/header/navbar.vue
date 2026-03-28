@@ -12,8 +12,8 @@
                 <div class="transition-all duration-500" :class="isScrolled ? 'scale-95' : 'scale-100'">
                     <NuxtLink to="/" class="flex items-center gap-3 group">
                         <div class="flex w-10 h-10 items-center justify-center">
-                            <img v-if="siteConfig?.logo?.logoUrl" :src="siteConfig?.logo?.logoUrl" alt="Logo"
-                                class="w-full h-full object-contain">
+                           
+                                <NuxtImg v-if="siteConfig?.logo?.logoUrl" :src="siteConfig?.logo?.logoUrl" alt="Logo" class="w-full h-full object-contain" />
                         </div>
                         <span class="text-xl font-bold text-white tracking-tighter uppercase whitespace-nowrap">
                             {{ siteConfig?.logo?.logoName }}

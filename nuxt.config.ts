@@ -24,10 +24,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/sitemap',
-  ],
+  modules: ['@nuxt/content', '@nuxtjs/sitemap', '@nuxt/image'],
   future: {
     compatibilityVersion: 4,
   },

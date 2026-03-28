@@ -4,6 +4,7 @@
 /// <reference path="runtime-config.d.ts" />
 /// <reference path="../../node_modules/.pnpm/@nuxt+nitro-server@3.21.2_better-sqlite3@12.8.0_db0@0.3.4_better-sqlite3@12.8.0__ioredi_c1622abd71602824b7ad73607f38fba3/node_modules/@nuxt/nitro-server/dist/index.d.mts" />
 /// <reference path="../module/nuxt-site-config.d.ts" />
+/// <reference path="../image/providers.d.ts" />
 /// <reference path="nitro-middleware.d.ts" />
 /// <reference path="./schema.d.ts" />
 
