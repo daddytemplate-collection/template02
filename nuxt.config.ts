@@ -49,16 +49,22 @@ export default defineNuxtConfig({
     }
   },
 
-
-  // 预渲染所有页面
-  routeRules: {
-    '/': { prerender: true },
-    '/products/**/**': { prerender: true },
-  },
-
+  ssr: true,
+  // 2. 静态部署预设
   nitro: {
-    preset: 'static'
+    static: true,
+    prerender: {
+      crawlLinks: true,  // 关键：自动顺着页面上的链接爬取并生成所有产品页
+      routes: ['/'],     // 从首页开始爬
+      failOnError: false // 防止因为一个死链接导致整个打包失败
+    }
   },
+
+  // 3. Sitemap 依然保留，确保告诉搜索引擎你的所有路径
+  sitemap: {
+    strictNuxtContentAds: true // 自动包含所有 nuxt-content 里的文章
+  }
+
 
 
 })

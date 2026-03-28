@@ -865,12 +865,6 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
-      "/": {
-        "prerender": true
-      },
-      "/products/**/**": {
-        "prerender": true
-      },
       "/__nuxt_content/**": {
         "robots": false,
         "cache": false
@@ -887,8 +881,14 @@ const _inlineRuntimeConfig = {
         "headers": {
           "Content-Type": "text/xml; charset=UTF-8",
           "Cache-Control": "public, max-age=600, must-revalidate",
-          "X-Sitemap-Prerendered": "2026-03-27T06:20:43.948Z"
+          "X-Sitemap-Prerendered": "2026-03-28T10:00:46.625Z"
         }
+      },
+      "/": {
+        "prerender": true
+      },
+      "/**": {
+        "prerender": true
       },
       "/_nuxt/builds/meta/**": {
         "headers": {
@@ -900,10 +900,10 @@ const _inlineRuntimeConfig = {
           "cache-control": "public, max-age=1, immutable"
         }
       },
-      "//_payload.json": {
+      "/__nuxt_content/products/sql_dump.txt/_payload.json": {
         "prerender": true
       },
-      "/__nuxt_content/products/sql_dump.txt/_payload.json": {
+      "//_payload.json": {
         "prerender": true
       }
     }
@@ -997,6 +997,8 @@ const _inlineRuntimeConfig = {
         "include": [],
         "exclude": [
           "/_**",
+          "/_nuxt/**",
+          "/__nuxt_content/**",
           "/_nuxt/**",
           "/__nuxt_content/**"
         ],
@@ -2636,22 +2638,7 @@ _x8AC6M3Oh9BTjkTgDUU4f0sLOa7N5CB8zBHp4Q_Cdlk,
 _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw
 ];
 
-const assets = {
-  "/index.mjs.map": {
-    "type": "application/json",
-    "etag": "\"f18e8-5nzPUWsCQ2w1dQNAn9Zsj+bmOb4\"",
-    "mtime": "2026-03-27T06:47:20.892Z",
-    "size": 989416,
-    "path": "index.mjs.map"
-  },
-  "/index.mjs": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"39843-S760CzRpeDNZkhlcgfrOfeDGPUw\"",
-    "mtime": "2026-03-27T06:47:20.890Z",
-    "size": 235587,
-    "path": "index.mjs"
-  }
-};
+const assets = {};
 
 function readAsset (id) {
   const serverDir = dirname$1(fileURLToPath(globalThis._importMeta_.url));
