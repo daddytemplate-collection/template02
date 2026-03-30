@@ -1,10 +1,14 @@
 ---
-title: "测试商品！！"
+title: "商品示范标题"
 price: "$9,999"
-image: "/img/p7.webp"
-firstImage: ["/img/p7.webp", "/img/p2.webp", "/img/p3.webp", "/img/p4.webp", "/img/p5.webp", "/img/p6.webp", "/img/p1.webp", "/img/p8.webp"]
+image: "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p1.webp"
+firstImage: ["https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p7.webp", "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p2.webp", "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p3.webp", "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p4.webp", "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p5.webp", "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p6.webp",  "https://hidaddy.oss-cn-shanghai.aliyuncs.com/daddytemplate/fortemplate/p7.webp"]
 description: "为了测试你的页面（标题、价格、描述、CTA、标签、以及 Markdown 详情），我为你准备了一个模拟的 MD 数据结构。你可以将此结构放入你的 content/products 文件夹中（如果是 Nuxt Content）"
 tags: ["Tags1","Tags2","Tags3"]
+seo:
+  title: "老爹模板 商品详情页 seo"
+  description: "商品示范描述"
+  image: "/img/og-laser.jpg"
 ---
 # 产品详情页撰写指南
 **因为用户所处行业不同，模板不能满足所有用户的需求。如需精准定制，[请联系我们的商务](https://www.daddytemplate.com/contact)** <br><br><br>
