@@ -5,23 +5,24 @@
       <!-- 1. 头部区域 -->
       <div class="flex flex-col items-center text-center mb-20">
         <!-- 胶囊标签 -->
-        <div class="px-4 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/50 text-[12px] font-medium text-zinc-400 mb-8 uppercase tracking-widest">
-          {{ siteConfig?.benefitsGrid.tag }}
+        <div v-scroll-reveal class="px-4 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/50 text-[12px] font-medium text-zinc-400 mb-8 uppercase tracking-widest">
+          {{ siteConfig?.index?.benefitsGrid?.tag }}
         </div>
         <!-- 大标题 -->
-        <h2 class="text-[42px] md:text-[64px] font-light leading-[1.1] tracking-[-0.03em] mb-6">
-          {{ siteConfig?.benefitsGrid.mainHeading }}
+        <h2 v-scroll-reveal class="text-[42px] md:text-[64px] font-light leading-[1.1] tracking-[-0.03em] mb-6">
+          {{ siteConfig?.index?.benefitsGrid?.mainHeading }}
         </h2>
         <!-- 描述文本 -->
-        <p class="text-zinc-400 text-lg md:text-xl font-extralight opacity-90">
-          {{ siteConfig?.benefitsGrid.subtitle }}
+        <p v-scroll-reveal class="text-zinc-400 text-lg md:text-xl font-extralight opacity-90">
+          {{ siteConfig?.index?.benefitsGrid?.subtitle }}
         </p>
       </div>
 
       <!-- 2. 核心 3x2 网格 -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div v-scroll-reveal class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div 
-          v-for="benefit in siteConfig?.benefitsGrid.benefits" 
+        
+          v-for="benefit in siteConfig?.index?.benefitsGrid?.benefits" 
           :key="benefit.title"
           class="relative group overflow-hidden rounded-2xl border border-white/10 bg-[#050505] p-10 flex flex-col h-full transition-all duration-500 hover:border-blue-500/30"
         >

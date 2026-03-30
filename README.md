@@ -2,14 +2,13 @@
 
 使用方法请访问：[老爹模板DaddyTemplate 文档](https://www.daddytemplate.com/dev-docs)
 
-## 如需要部署服务以及配置服务(¥199.00),可直接和我取得联系13656617631
+# 如需要部署服务以及配置服务(¥199.00),可直接和我取得联系13656617631
 
 ## 模板预览地址
-[模板预览地址](https://template01-wine.vercel.app/)
-如上述的地址无法访问,因服务器在国外,请访问以下[国内模板预览地址](https://www.daddytemplate.com/previews/template01/index.html)
-## 开发者使用方法
+[模板预览地址](https://www.daddytemplate.com/previews/template02/index.html)
 
-Make sure to install dependencies:
+# 开发者使用方法
+安装依赖
 
 ```bash
 

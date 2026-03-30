@@ -1,130 +1,143 @@
 <template>
-  <div class="bg-white min-h-screen pb-20">
-    <!-- 顶部面包屑与背景 (深蓝色系) -->
-    <div class="bg-[#001151] pt-32 pb-20 relative overflow-hidden" style="background-image: url('/img/co-b-r.svg'); background-size: cover; background-position: center;">
-      <!-- <div class="absolute inset-0 opacity-10">
-        <img src="/img/co-b-r.svg"
-          class="w-full h-full object-cover">
-      </div> -->
+  <div class="bg-black min-h-screen pb-24 text-white font-sans overflow-hidden">
+    
+    <!-- 1. 顶部背景与面包屑 (Hero Area) -->
+    <div class="relative pt-32 pb-16 overflow-hidden">
+      <!-- 品牌蓝光背景 -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[400px]   pointer-events-none"></div>
 
-      <div class="container mx-auto px-4 relative z-10">
-        <nav class="flex items-center gap-2 text-sm font-medium text-blue-200/60 mb-6">
-          <NuxtLink to="/" class="hover:text-white transition-colors">Home</NuxtLink>
-          <ChevronRight class="w-4 h-4" />
-          <NuxtLink :to="`/products/${categoryName}`" class="hover:text-white transition-colors capitalize">{{
-            categoryName }}</NuxtLink>
-          <ChevronRight class="w-4 h-4" />
-          <span class="text-white line-clamp-1">{{ product?.title || 'Loading...' }}</span>
+      <div class="container mx-auto px-6 max-w-[1200px] relative z-10">
+        <nav v-scroll-reveal class="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-500 mb-8">
+          <NuxtLink to="/" class="hover:text-blue-500 transition-colors">Home</NuxtLink>
+          <span class="opacity-30">/</span>
+          <NuxtLink :to="`/products/${categoryName}`" class="hover:text-blue-500 transition-colors capitalize">{{ categoryName }}</NuxtLink>
+          <span class="opacity-30">/</span>
+          <span class="text-zinc-300 line-clamp-1 uppercase">{{ product?.title || 'Loading...' }}</span>
         </nav>
-       
       </div>
     </div>
 
-    <!-- 内容区：使用 v-if 确保数据加载后再渲染，防止报错 -->
-    <div v-if="product" class="container mx-auto px-4 mt-10  z-20">
-      <!-- 上方：产品图片画廊 -->
-      <div class="lg:grid grid-cols-2 gap-8  mx-auto container px-4">
+    <!-- 2. 产品主交互区 (Product Interaction) -->
+    <div v-if="product" class="container mx-auto px-6 max-w-[1200px] relative z-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
-        <!-- ProductGallery 区域 -->
-        <div class="col-span-1">
-          <ProductGallery :images="product?.meta?.firstImage || []" class="w-full" />
+        <!-- 左侧：画廊区域 (封装进卡片) -->
+        <div v-scroll-reveal="{ x: -30 }" class="relative group rounded-[2.5rem] border border-white/10 bg-[#050505] overflow-hidden shadow-2xl p-2">
+           <ProductGallery :images="product?.meta?.firstImage || []" class="w-full rounded-[2rem] overflow-hidden" />
         </div>
 
-        <!-- 右侧区域 -->
-        <div class="mt-20 lg:mt-0 flex flex-col space-y-10"> <!-- 增加整体间距到 10 -->
+        <!-- 右侧：核心参数与决策 -->
+        <div class="flex flex-col space-y-10">
+          
+          <!-- 标题区域 -->
+          <div class="space-y-4">
+            <div v-scroll-reveal class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+             Details
+            </div>
+            <h1 v-scroll-reveal class="text-3xl md:text-5xl font-bold text-white leading-[1.1] tracking-tight">
+              {{ product.title }}
+            </h1>
+          </div>
 
-  <!-- 1. 标题区域：增加小标签，模仿 Hero 风格 -->
-  <div class="space-y-3">
-    <div class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></span>
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Official Product</span>
-    </div>
-    <h1 class="text-2xl md:text-3xl lg:text-4xl font-black text-[#001151] leading-[1.15] tracking-tight">
-      {{ product.title }}
-    </h1>
-  </div>
+          <!-- 价格/报价展示 -->
+          <div v-if="product.meta?.price" v-scroll-reveal="{ delay: 0.2 }" 
+            class="inline-flex items-center gap-5 p-5 bg-white/5 border border-white/10 rounded-2xl w-fit pr-10 relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="w-14 h-14 bg-blue-600/20 rounded-xl flex items-center justify-center border border-blue-500/30">
+              <Receipt class="w-7 h-7 text-blue-500" />
+            </div>
+            <div class="flex flex-col relative z-10">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Target Quotation</span>
+              <span class="text-3xl font-bold text-white tracking-tighter">{{ product.meta?.price }}</span>
+            </div>
+          </div>
 
-  <!-- 2. 价格区域：改为精致的卡片式展示 -->
-  <div v-if="product.meta?.price" 
-    class="inline-flex items-center gap-4 p-4 bg-slate-50 border border-slate-100 rounded-2xl w-fit pr-8">
-    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center border border-slate-100">
-      <Receipt class="w-6 h-6 text-[#001151]" />
-    </div>
-    <div class="flex flex-col">
-      <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Target Quote</span>
-      <span class="text-2xl font-black text-slate-900 tracking-tight">{{ product.meta?.price }}</span>
-    </div>
-  </div>
+          <!-- 简述 -->
+          <div v-scroll-reveal="{ delay: 0.3 }" class="relative ">
+            
+            <p class="text-zinc-400 text-lg leading-relaxed font-light">
+              {{ product.description }}
+            </p>
+          </div>
 
-  <!-- 3. 描述区域：增加侧边引导条 -->
-  <div class="relative pl-8">
-    <div class="absolute left-0 top-2 bottom-2 w-1 bg-blue-500/20 rounded-full">
-      <div class="w-full h-1/3 bg-blue-500 rounded-full"></div>
-    </div>
-    <p class="text-slate-600 text-lg leading-relaxed font-medium">
-      {{ product.description }}
-    </p>
-  </div>
+          <!-- CTA 转换 -->
+          <div v-scroll-reveal="{ delay: 0.4 }" class="space-y-4">
+            <button @click="onInquiry"
+              class="group cursor-pointer relative w-full bg-white text-black hover:bg-zinc-200 font-bold py-5 rounded-2xl transition-all duration-500 active:scale-[0.98] flex items-center justify-center gap-3 shadow-2xl">
+              <span class="text-lg uppercase tracking-widest">Send Inquiry Now</span>
+              <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <div class="flex items-center justify-center gap-6 text-zinc-600 text-[10px] font-bold uppercase tracking-widest">
+              <span class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-blue-500" /> Verified Supplier</span>
+              <span class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-blue-500" /> 24h Response</span>
+            </div>
+          </div>
 
-  <!-- 4. 决策转化区 (CTA)：加入图标和更强的投影 -->
-  <div class="space-y-4">
-    <button @click="isInquiryOpen = true"
-      class="group relative w-full bg-[#001151] hover:bg-blue-900 text-white font-bold py-5 rounded-2xl transition-all shadow-[0_20px_40px_rgba(0,17,81,0.2)] active:scale-[0.98] flex items-center justify-center gap-3 overflow-hidden">
-      <!-- 按钮扫光效果 -->
-      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-      
-      <span class="relative z-10 text-lg">Send Inquiry Now</span>
-      <ArrowRight class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-    </button>
-    <p class="text-center text-xs text-slate-400 font-medium">Verified Supplier | Response within 24h</p>
-  </div>
-
-  <!-- 5. 标签区域：更精致的药丸标签 -->
-  <div v-if="product.meta?.tags && product.meta?.tags.length > 0"
-    class="flex flex-wrap gap-2 pt-8 border-t border-slate-100">
-    <span v-for="tag in product.meta?.tags" :key="tag"
-      class="px-4 py-1.5 bg-white border border-slate-200 text-slate-500 text-xs font-bold rounded-full hover:border-blue-300 hover:text-blue-500 transition-colors cursor-default capitalize">
-      # {{ tag }}
-    </span>
-  </div>
-
-</div>
+          <!-- 标签区 -->
+          <div v-if="product.meta?.tags && product.meta?.tags.length > 0"
+            v-scroll-reveal="{ delay: 0.5 }"
+            class="flex flex-wrap gap-2 pt-10 border-t border-white/5">
+            <span v-for="tag in product.meta?.tags" :key="tag"
+              class="px-4 py-1.5 bg-white/5 border border-white/10 text-zinc-400 text-[10px] font-bold rounded-full hover:border-blue-500/50 hover:text-white transition-all cursor-default capitalize tracking-wider">
+              # {{ tag }}
+            </span>
+          </div>
+        </div>
       </div>
 
+      <!-- 3. Markdown 正文详情 (Prose Invert) -->
+      <div v-scroll-reveal="{ delay: 0.6 }" class="max-w-[900px] mx-auto mt-32 relative">
+        <!-- 装饰线条 -->
+        <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent text-center flex items-center justify-center">
+            <div class="size-1.5 rounded-full bg-blue-500"></div>
+        </div>
 
-
-      <!-- 下方：Markdown 正文详情 -->
-      <div class="max-w-4xl mx-auto mt-20">
-
-
-        <div class="prose prose-slate max-w-none 
-          prose-headings:text-[#001151] 
-          prose-a:text-gray-900 
-          prose-img:rounded-2xl">
-          <!-- 🌟 使用 ContentRenderer 渲染正文 -->
+        <div class="prose prose-invert prose-blue max-w-none 
+          prose-headings:tracking-tight 
+          prose-headings:font-bold 
+          prose-p:text-zinc-400 
+          prose-img:rounded-[2rem] 
+          prose-img:border 
+          prose-img:border-white/10">
           <ContentRenderer :value="product" />
         </div>
       </div>
     </div>
 
-    <!-- 加载状态或 404 提示 -->
-    <div v-else-if="!pending" class="container mx-auto px-4 py-20 text-center">
-      <h2 class="text-2xl font-bold text-slate-400">Product not found.</h2>
-      <NuxtLink to="/" class="text-blue-500 mt-4 inline-block underline">Back to Home</NuxtLink>
+    <!-- 4. 异常处理 -->
+    <div v-else-if="!pending" class="container mx-auto px-6 py-40 text-center">
+      <div class="inline-flex p-6 rounded-full bg-white/5 border border-white/10 mb-8 text-zinc-800">
+        <PackageOpen class="w-16 h-16" />
+      </div>
+      <h2 class="text-3xl font-bold text-white mb-4">Product Not Found</h2>
+      <NuxtLink to="/products" class="text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-widest font-bold text-xs border-b border-blue-500/30 pb-1">
+        Return to Collections
+      </NuxtLink>
     </div>
-    <!-- 放置弹窗组件 -->
-    <!-- <ProductInquiryModal :is-open="isInquiryOpen" :product-name="product?.title || 'Unknown Product'" -->
-      @close="isInquiryOpen = false" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ChevronRight, CheckCircle2, Send, Receipt } from 'lucide-vue-next'
+import { ChevronRight, CheckCircle2, Send, Receipt,ArrowRight } from 'lucide-vue-next'
 const isInquiryOpen = ref(false)
 const route = useRoute()
 const categoryName = route.params.category as string
 const slug = route.params.slug as string
+const { openInquiry } = useInquiry()
+// 从app.config.ts获取配置
 
+
+// 打开咨询弹窗
+const onInquiry = () => {
+    // 默认就是 true，也可以显式写出 
+    //showLabel: false 表示不显示咨询弹窗的标题
+    // 第一个参数配置如咨询的商品名称
+    openInquiry(product.value.title, { showLabel: true })
+}
 // 🌟 核心修复：使用最稳妥的 queryContent 语法
 // 不要手动 import queryContent，Nuxt 会自动导入
 const { data: product, pending } = await useAsyncData(`product-${route.path}`, () => {
@@ -150,111 +163,50 @@ watchEffect(() => {
 <style>
 @reference "tailwindcss";
 
-.prose {
-  @apply text-slate-600 leading-relaxed;
-
-}
-
-.prose a {
-  @apply text-gray-900 font-semibold no-underline hover:border-blue-600 transition-all;
-  border-bottom: none !important;
-}
-
-/* 标题美化：增加层次感和蓝色基调 */
-.prose h1 {
-  @apply text-gray-900 font-extrabold text-5xl mt-12 mb-12;
-
-
-}
-
 .prose h2 {
-  @apply text-gray-900 font-extrabold text-3xl mt-12 mb-6;
-
-
+  @apply text-3xl font-bold mt-16 mb-8 pb-4 border-b border-white/5;
 }
-
 
 .prose h3 {
-  @apply text-[#001151] font-bold text-xl mt-8 mb-4 flex items-center gap-2;
+  @apply text-xl font-bold mt-10 mb-4 text-white flex items-center gap-3;
 }
 
+.prose h3::before {
+  content: '';
+  @apply w-1.5 h-6 bg-blue-600 rounded-full;
+}
 
-/* 表格美化：这是最影响专业感的地方 */
 .prose table {
-  @apply w-full border-collapse border border-slate-200 rounded-xl overflow-hidden my-8 shadow-sm;
+  @apply w-full border-separate border-spacing-0 rounded-2xl overflow-hidden my-12 border border-white/10 bg-[#050505];
 }
 
 .prose thead th {
-  @apply bg-slate-50 text-slate-900 font-bold px-4 py-4 text-left border-b border-slate-200 uppercase tracking-wider text-xs;
+  @apply bg-white/5 text-zinc-400 font-bold px-6 py-5 text-left border-b border-white/10 uppercase tracking-widest text-[10px];
 }
 
 .prose tbody td {
-  @apply px-4 py-4 border-b border-slate-100 text-sm;
+  @apply px-6 py-5 border-b border-white/5 text-sm text-zinc-300 font-light;
 }
 
-.prose tbody tr:last-child td {
-  @apply border-b-0;
+.prose tbody tr:hover td {
+  @apply bg-white/[0.02] text-white;
 }
 
-.prose tbody tr:nth-child(even) {
-  @apply bg-slate-50/50;
-  /* 隔行换色（斑马纹） */
-}
-
-/* 引用美化：优雅的背景色和侧边条 */
 .prose blockquote {
-  @apply border-l-4 border-blue-500 bg-blue-50/50 px-8 py-6 rounded-r-2xl italic text-slate-700 my-10 not-italic;
+  @apply border-l-4 border-blue-600 bg-white/5 px-10 py-8 rounded-r-lg italic text-zinc-300 my-12 not-italic relative overflow-hidden;
 }
 
-/* 列表美化 */
-/* 1. 针对所有列表的基础重置 (清理默认间距) */
-.prose ul,
-.prose ol {
-  @apply space-y-3 my-6 pl-0;
-}
 
-/* 2. 针对无序列表 (ul) 的样式 */
-.prose ul {
-  @apply list-none;
-}
 
 .prose ul li {
-  @apply relative pl-6;
+  @apply relative pl-8 mb-4 before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-2 before:h-2 before:rounded-full before:bg-blue-600 before:shadow-[0_0_8px_rgba(37,99,235,0.8)];
 }
 
-.prose ul li::before {
-  content: '';
-  @apply absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-gray-800;
-}
-
-/* 3. 针对有序列表 (ol) 的样式 (必须开启 list-decimal) */
-.prose ol {
-  @apply list-decimal pl-6;
-  /* 恢复数字显示，并保留左侧间距 */
-}
-
-.prose ol li {
-  @apply pl-2;
-  /* 给数字和文字之间留出一点点空隙 */
-}
-
-/* 图片及其描述美化 */
-.prose img {
-  @apply rounded-xl border-slate-100 my-10 mx-auto;
-}
-
-.prose em {
-  /* 针对图片下方的文字说明 (Caption) */
-  @apply block text-center text-xs text-slate-400 mt-[-2rem] mb-10 not-italic font-medium;
-}
-
-/* 水平分割线 */
-.prose hr {
-  @apply my-16 border-slate-100;
-}
-
-/* 链接美化 */
 .prose a {
-  @apply text-gray-900 font-semibold no-underline border-b border-blue-200 hover:border-blue-600 transition-all;
+  @apply no-underline border-b border-blue-500/30 hover:border-blue-500 transition-all duration-300 pb-0.5 font-medium;
+}
+
+.prose img {
+  @apply shadow-[0_0_50px_rgba(0,0,0,0.5)] my-16 hover:scale-[1.01] transition-transform duration-700;
 }
 </style>

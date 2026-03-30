@@ -4,19 +4,20 @@
         <div class="w-full h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent"></div>
 
         <!-- 顶部文字区域：占据上半屏 -->
-        <section class="relative z-10 flex-1 flex flex-col items-center justify-center px-4">
+        <section  v-scroll-group class="relative z-10 flex-1 flex flex-col items-center justify-center px-4">
             <h1
+           
                 class="grow-text text-[80px] md:text-[150px] font-normal leading-[1] tracking-[-0.04em] text-transparent bg-clip-text">
-                {{ siteConfig?.hero.welcomeText }}
+                {{ siteConfig?.index?.hero?.welcomeText }}
             </h1>
 
             <p class="text-hero-sub text-center text-lg md:text-xl leading-relaxed max-w-md mt-6 opacity-80 font-light">
-                {{ siteConfig?.hero.mainHeading }}
+                {{ siteConfig?.index?.hero?.mainHeading }}
             </p>
 
             <div class="mt-10">
-                <PremiumButton @click="onInquiry" variant="neon" size="lg" withArrow to="/products">
-                 {{ siteConfig?.hero.ctaButton }}
+                <PremiumButton  variant="glass" size="lg" withArrow to="/products">
+                 {{ siteConfig?.index?.hero?.ctaButton }}
                 </PremiumButton>
             </div>
         </section>
@@ -37,16 +38,16 @@
             <!-- 内容层：h-full + justify-end 确保内容靠下 -->
             <div class="relative z-10 h-full flex flex-col justify-end pb-16 px-4">
                 <!-- Logo Marquee -->
-                <div class="w-full mb-30 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div v-scroll-reveal class="w-full mb-30 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div
                         class="text-foreground/50 text-sm whitespace-nowrap shrink-0 text-center md:text-left leading-relaxed font-light">
-                        {{ siteConfig?.hero.logoMarqueeFirst }} <br class="hidden md:block" /> {{ siteConfig?.hero.logoMarqueeSecond }}
+                        {{ siteConfig?.index?.hero?.hero?.logoMarqueeFirst }} <br class="hidden md:block" /> {{ siteConfig?.index?.hero?.hero?.logoMarqueeSecond }}
                     </div>
 
                     <div class="overflow-hidden flex-1 relative flex items-center">
                         <div class="flex animate-marquee gap-16 whitespace-nowrap">
                             <div v-for="i in 2" :key="i" class="flex gap-16 items-center">
-                                <div v-for="brand in siteConfig?.hero.brands" :key="brand" class="flex items-center gap-3">
+                                <div v-for="brand in siteConfig?.index?.hero?.hero?.brands?.brands" :key="brand" class="flex items-center gap-3">
                                     <div
                                         class="liquid-glass w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs">
                                         {{ brand[0] }}

@@ -18,13 +18,10 @@ export default defineNuxtConfig({
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
     pageTransition: { name: 'page', mode: 'out-in' },
-    head: {
-      link: [
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' }
-      ]
-    }
+    
   },
   modules: ['@nuxt/content', '@nuxtjs/sitemap', '@nuxt/image'],
+
   future: {
     compatibilityVersion: 4,
   },

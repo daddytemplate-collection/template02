@@ -4,21 +4,21 @@
       
       <!-- 1. 顶部标题区域 (保持原样) -->
       <div class="flex flex-col items-center text-center mb-16">
-        <div v-if="siteConfig?.faq?.tag" class="px-4 py-1 rounded-md border border-zinc-800 bg-[#0a0a0a] text-[12px] font-medium text-zinc-400 mb-8 uppercase tracking-widest">
-          {{ siteConfig.faq.tag }}
+        <div v-scroll-reveal="{ delay: 0.2,y: 80}" v-if="siteConfig?.index?.faq?.tag" class="px-4 py-1 rounded-md border border-zinc-800 bg-[#0a0a0a] text-[12px] font-medium text-zinc-400 mb-8 uppercase tracking-widest">
+          {{ siteConfig?.index?.faq?.tag }}
         </div>
-        <h2 class="text-[40px] md:text-[60px] font-light leading-[1.1] tracking-[-0.04em] mb-6">
-          {{ siteConfig?.faq?.mainHeading }}
+        <h2 v-scroll-reveal="{ delay: 0.2,y: 80}" class="text-[40px] md:text-[60px] font-light leading-[1.1] tracking-[-0.04em] mb-6">
+          {{ siteConfig?.index?.faq?.mainHeading }}
         </h2>
-        <p class="text-zinc-400 text-lg font-extralight opacity-90 max-w-xl mx-auto">
-          {{ siteConfig?.faq?.subtitle }}
+        <p v-scroll-reveal="{ delay: 0.2,y: 80}" class="text-zinc-400 text-lg font-extralight opacity-90 max-w-xl mx-auto">
+          {{ siteConfig?.index?.faq?.subtitle }}
         </p>
       </div>
 
       <!-- 2. FAQ 列表 -->
-      <div class="space-y-4">
+      <div v-scroll-reveal="{ delay: 0.2,y: 80}" class="space-y-4">
         <div 
-          v-for="(item, index) in siteConfig?.faq?.faqs" 
+          v-for="(item, index) in siteConfig?.index?.faq?.faqs" 
           :key="index"
           class="relative transition-all duration-500 rounded-2xl border group cursor-pointer overflow-hidden"
           :class="[

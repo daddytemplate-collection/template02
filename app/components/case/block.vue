@@ -1,17 +1,17 @@
 <template>
-  <section class="bg-black text-white py-[100px] font-sans">
-    <div class="container mx-auto px-6 max-w-[960px] ">
+  <section   class="bg-black text-white py-[100px] font-sans">
+    <div  class="container mx-auto px-6 max-w-[960px] ">
       
       <!-- 1. 顶部标题区域 (保持不变) -->
-      <div class="flex flex-col items-center text-center mb-[80px]">
-        <div class="px-4 py-1 rounded-md border border-zinc-800 bg-[#0a0a0a] text-[12px] text-zinc-400 mb-6 uppercase tracking-wider">
-         {{ siteConfig?.case?.tag || "Products Studies" }}
+      <div  class="flex flex-col items-center text-center mb-[80px]">
+        <div v-scroll-reveal="{ delay: 0.2,y: 80}" class="px-4 py-1 rounded-md border border-zinc-800 bg-[#0a0a0a] text-[12px] text-zinc-400 mb-6 uppercase tracking-wider">
+         {{ siteConfig?.index?.case?.case?.tag || "Products Studies" }}
         </div>
-        <h2 class="text-[42px] md:text-[64px] font-light leading-[1.1] tracking-[-0.03em] mb-6">
-          {{ siteConfig?.case?.mainHeading || "Case Studies" }}
+        <h2 v-scroll-reveal="{ delay: 0.2,y: 80}"  class="text-[42px] md:text-[64px] font-light leading-[1.1] tracking-[-0.03em] mb-6">
+          {{ siteConfig?.index?.case?.case?.mainHeading || "Case Studies" }}
         </h2>
-        <p class="text-zinc-400 text-lg md:text-xl font-extralight opacity-90">
-         {{ siteConfig?.case?.subtitle  }}
+        <p v-scroll-reveal="{ delay: 0.2,y: 80}"  class="text-zinc-400 text-lg md:text-xl font-extralight opacity-90">
+         {{ siteConfig?.index?.case?.case?.subtitle  }}
         </p>
       </div>
 
@@ -21,7 +21,7 @@
           <div :key="currentIndex" class="grid grid-cols-1 md:grid-cols-2 gap-[60px] md:gap-[100px] items-start">
             
             <!-- 左侧：产品大图 -->
-            <div class="w-full aspect-square rounded-[24px] overflow-hidden border border-white/10 bg-zinc-900">
+            <div v-scroll-reveal="{ delay: 0.2,y: 80}" class="w-full aspect-square rounded-[24px] overflow-hidden border border-white/10 bg-zinc-900">
               <img 
                 :src="currentCase.image" 
                 class="w-full h-full object-cover"
@@ -30,7 +30,7 @@
             </div>
 
             <!-- 右侧：详情内容 -->
-            <div class="pt-4 flex flex-col">
+            <div v-scroll-reveal="{ delay: 0.2,y: 80}" class="pt-4 flex flex-col">
               <div class="flex items-center gap-2 mb-8">
                 <!-- 还原 Logo 图标 -->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@
       </div>
 
       <!-- 3. 底部导航控制 (已改为点击切换) -->
-      <div class="mt-[80px] flex items-center justify-center gap-8">
+      <div v-scroll-reveal="{ delay: 0.2,y: 80}" class="mt-[80px] flex items-center justify-center gap-8">
         <!-- 左箭头 -->
         <button @click="prevCase" class="text-zinc-500 hover:text-white transition-colors cursor-pointer p-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -86,7 +86,7 @@
 
 <script setup lang="ts">
 const siteConfig = useAppConfig()
-const cases = siteConfig?.case?.product || []
+const cases = siteConfig?.index?.case?.product || []
 const currentIndex = ref(0)
 
 

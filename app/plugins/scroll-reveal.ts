@@ -6,12 +6,15 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // 1. Reveal 指令
   nuxtApp.vueApp.directive('scroll-reveal', {
+    getSSRProps() {
+      return {}
+    },
     mounted(el: HTMLElement, binding: any) {
       const opt = binding.value || {}
       gsap.set(el, { y: opt.y ?? 40, opacity: 0, scale: opt.scale ?? 0.98, visibility: 'hidden' })
-      
+
       gsap.to(el, {
-        y: 0, opacity: 1, scale: 1, duration: 1, delay: opt.delay ?? 0,
+        y: 0, opacity: 1, scale: 1, duration: 1.5, delay: opt.delay ?? 0,
         scrollTrigger: {
           trigger: el,
           start: "top 92%",
@@ -27,11 +30,12 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // 2. Group 指令
   nuxtApp.vueApp.directive('scroll-group', {
+
     mounted(el: HTMLElement, binding: any) {
       const opt = binding.value || {}
       const rawTargets = opt.selector ? el.querySelectorAll(opt.selector) : el.children
       const targets = Array.from(rawTargets) as HTMLElement[]
-      
+
       if (targets.length === 0) return
 
       gsap.set(targets, { y: opt.y ?? 40, opacity: 0, scale: opt.scale ?? 0.98, visibility: 'hidden' })
@@ -56,6 +60,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // 3. Count 指令
   nuxtApp.vueApp.directive('count', {
+
     mounted(el: HTMLElement, binding: any) {
       const rawValue = binding.value || el.innerText
       const match = rawValue.match(/(\d+\.?\d*)/)
@@ -81,4 +86,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       })
     }
   })
+
+
 })

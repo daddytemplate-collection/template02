@@ -15,6 +15,7 @@ type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {},
 
 interface _GlobalComponents {
   Alert: typeof import("../../app/components/Alert.vue")['default']
+  CatalogFetcher: typeof import("../../app/components/CatalogFetcher.vue")['default']
   Counter: typeof import("../../app/components/Counter.vue")['default']
   InquiryModal: typeof import("../../app/components/InquiryModal.vue")['default']
   PremiumButton: typeof import("../../app/components/PremiumButton.vue")['default']
@@ -83,6 +84,7 @@ interface _GlobalComponents {
   MDCSlot: typeof import("../../node_modules/.pnpm/@nuxtjs+mdc@0.20.2_magicast@0.5.2/node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
   NuxtIsland: typeof import("../../node_modules/.pnpm/nuxt@3.21.2_@parcel+watcher@2.5.6_@vue+compiler-sfc@3.5.30_better-sqlite3@12.8.0_cac@6._88d0c5eb87026a6cb0cf0c692e5003ae/node_modules/nuxt/dist/app/components/nuxt-island")['default']
   LazyAlert: LazyComponent<typeof import("../../app/components/Alert.vue")['default']>
+  LazyCatalogFetcher: LazyComponent<typeof import("../../app/components/CatalogFetcher.vue")['default']>
   LazyCounter: LazyComponent<typeof import("../../app/components/Counter.vue")['default']>
   LazyInquiryModal: LazyComponent<typeof import("../../app/components/InquiryModal.vue")['default']>
   LazyPremiumButton: LazyComponent<typeof import("../../app/components/PremiumButton.vue")['default']>

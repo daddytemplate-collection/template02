@@ -17,54 +17,33 @@
           </NuxtLink>
 
           <p class="text-zinc-400 text-base leading-relaxed max-w-sm font-light mb-10">
-            {{ siteConfig?.logo?.logoName || 'Xtract' }} — Automate Smarter, Optimize Faster, and Grow Stronger.
+            {{ siteConfig?.logo?.slogan  }} 
           </p>
 
           <!-- 订阅邮件 -->
-          <div class="w-full max-w-sm">
-            <h4 class="text-white text-sm font-bold uppercase tracking-[0.2em] mb-6 inline-block border-b border-dotted border-blue-500/60 pb-1">
-              Join our newsletter
-            </h4>
-            <div class="relative flex items-center p-1 bg-white/5 border border-white/10 rounded-2xl focus-within:border-blue-500/50 transition-all duration-300">
-              <input 
-                type="email" 
-                placeholder="name@email.com" 
-                class="flex-1 bg-transparent border-none text-white text-sm px-4 py-2.5 outline-none placeholder:text-zinc-700"
-              />
-              <button class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all active:scale-95 shadow-lg shadow-blue-600/20">
-                Subscribe
-              </button>
-            </div>
-          </div>
+          <CatalogFetcher />
         </div>
 
         <!-- B. 占位列 (占 1 列，增加呼吸感) -->
         <div class="hidden lg:block lg:col-span-1"></div>
 
         <!-- C. 导航链接 (2+2+2 = 6 列) -->
-        <div class="lg:col-span-2 text-center lg:text-left">
-          <h3 class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.25em] mb-8">Links</h3>
-          <ul class="space-y-4">
-            <li v-for="link in links" :key="link.label">
-              <NuxtLink :to="link.href" class="text-zinc-400 hover:text-white transition-colors font-light text-base">{{ link.label }}</NuxtLink>
-            </li>
-          </ul>
-        </div>
+        
 
-        <div class="lg:col-span-2 text-center lg:text-left">
+        <div class="lg:col-span-3 text-center lg:text-right">
           <h3 class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.25em] mb-8">Pages</h3>
           <ul class="space-y-4">
             <li v-for="page in pages" :key="page.label">
-              <NuxtLink :to="page.href" class="text-zinc-400 hover:text-white transition-colors font-light text-base">{{ page.label }}</NuxtLink>
+              <NuxtLink :to="page.href" class="text-zinc-400 hover:text-white transition-colors font-light text-sm">{{ page.label }}</NuxtLink>
             </li>
           </ul>
         </div>
 
-        <div class="lg:col-span-2 text-center lg:text-left">
+        <div class="lg:col-span-3 text-center  lg:text-right">
           <h3 class="text-[11px] font-black text-zinc-500 uppercase tracking-[0.25em] mb-8">Socials</h3>
           <ul class="space-y-4">
-            <li v-for="social in socials" :key="social.label">
-              <a :href="social.href" target="_blank" class="text-zinc-400 hover:text-white transition-colors font-light text-base">{{ social.label }}</a>
+            <li v-for="social in siteConfig?.footer?.socials" :key="social.label">
+              <a :href="social.href" target="_blank" class="text-zinc-400 hover:text-white transition-colors font-light text-sm">{{ social.label }}</a>
             </li>
           </ul>
         </div>
@@ -77,8 +56,6 @@
         </div>
 
         <div class="flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.2em]">
-          <NuxtLink to="/agreement" class="text-zinc-600 hover:text-white transition-colors">Terms</NuxtLink>
-          <NuxtLink to="/private" class="text-zinc-600 hover:text-white transition-colors">Privacy</NuxtLink>
           <a href="https://www.daddytemplate.com" target="_blank" class="text-zinc-700 hover:text-primary transition-colors flex items-center gap-1">
             Powered by <span class="text-zinc-500 font-black">DaddyTemplate</span>
           </a>
@@ -91,21 +68,13 @@
 <script setup lang="ts">
 const siteConfig = useAppConfig()
 
-const links = [
-    { label: 'Services', href: '/website_design' },
-    { label: 'Templates', href: '/template' },
-    { label: 'Showcase', href: '/cases' }
-]
+
 
 const pages = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
-    { label: 'Blogs', href: '/blogs' }
+    { label: 'Products', href: '/products' }
 ]
 
-const socials = [
-    { label: 'Twitter', href: 'https://x.com/Zhuxiaoming1987' },
-    { label: 'Github', href: 'https://github.com/daddytemplate' },
-    { label: 'Discord', href: '#' }
-]
+
 </script>

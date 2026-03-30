@@ -158,7 +158,7 @@
         "./mdc-imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/53342f81-01cd-4fca-a2b0-c8f1f81f4613"
+        "./manifest/meta/dev"
       ],
       "#components": [
         "./components"
@@ -250,6 +250,6 @@
     "../node_modules/.pnpm/@nuxtjs+mdc@0.20.2_magicast@0.5.2/node_modules/dist/runtime/server",
     "../node_modules/.pnpm/nuxt-site-config@3.2.21_magicast@0.5.2_vite@7.3.1_jiti@2.6.1_lightningcss@1.32.0_terser_385e61b2b9d3d7992227b792c7c64575/node_modules/runtime/server",
     "../node_modules/.pnpm/nuxt-site-config@3.2.21_magicast@0.5.2_vite@7.3.1_jiti@2.6.1_lightningcss@1.32.0_terser_385e61b2b9d3d7992227b792c7c64575/node_modules/dist/runtime/server",
-    "../.output"
+    "dev"
   ]
 }
