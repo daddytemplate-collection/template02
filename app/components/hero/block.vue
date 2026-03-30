@@ -47,7 +47,7 @@
                     <div class="overflow-hidden flex-1 relative flex items-center">
                         <div class="flex animate-marquee gap-16 whitespace-nowrap">
                             <div v-for="i in 2" :key="i" class="flex gap-16 items-center">
-                                <div v-for="brand in siteConfig?.index?.hero?.brands?.brands" :key="brand" class="flex items-center gap-3">
+                                <div v-for="brand in siteConfig?.index?.hero?.brands" :key="brand" class="flex items-center gap-3" >
                                     <div
                                         class="liquid-glass w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs">
                                         {{ brand[0] }}

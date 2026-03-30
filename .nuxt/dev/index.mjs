@@ -926,7 +926,7 @@ const _inlineRuntimeConfig = {
         "headers": {
           "Content-Type": "text/xml; charset=UTF-8",
           "Cache-Control": "public, max-age=600, must-revalidate",
-          "X-Sitemap-Prerendered": "2026-03-30T05:23:01.280Z"
+          "X-Sitemap-Prerendered": "2026-03-30T06:14:18.095Z"
         }
       },
       "/": {
@@ -3315,7 +3315,7 @@ const _C760N0 = eventHandler(async (e) => {
 });
 
 const checksums = {
-  "products": "v3.5.0--XvtSXA-X-yBmv5KOlzbEH0flVa-Ukohs2GZz9ZrmW0Q"
+  "products": "v3.5.0---tMZ-yL5v1UBD0_NzKxHK10oPj-8QDKzZJYS0Ved_1U"
 };
 const checksumsStructure = {
   "products": "n5JQRVnYL0x8Hyos6t0Yj3QCkhLnUhPNPI5qTqJrpvA"
