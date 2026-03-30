@@ -41,13 +41,13 @@
                 <div v-scroll-reveal class="w-full mb-30 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div
                         class="text-foreground/50 text-sm whitespace-nowrap shrink-0 text-center md:text-left leading-relaxed font-light">
-                        {{ siteConfig?.index?.hero?.hero?.logoMarqueeFirst }} <br class="hidden md:block" /> {{ siteConfig?.index?.hero?.hero?.logoMarqueeSecond }}
+                        {{ siteConfig?.index?.hero?.logoMarqueeFirst }} <br class="hidden md:block" /> {{ siteConfig?.index?.hero?.logoMarqueeSecond }}
                     </div>
 
                     <div class="overflow-hidden flex-1 relative flex items-center">
                         <div class="flex animate-marquee gap-16 whitespace-nowrap">
                             <div v-for="i in 2" :key="i" class="flex gap-16 items-center">
-                                <div v-for="brand in siteConfig?.index?.hero?.hero?.brands?.brands" :key="brand" class="flex items-center gap-3">
+                                <div v-for="brand in siteConfig?.index?.hero?.brands?.brands" :key="brand" class="flex items-center gap-3">
                                     <div
                                         class="liquid-glass w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs">
                                         {{ brand[0] }}
